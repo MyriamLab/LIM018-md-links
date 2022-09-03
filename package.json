@@ -6,8 +6,13 @@
   },
   "scripts": {
     "start": "node ./index.js",
-    "test": " ",
+    "test": "jest",
     "build": " "
-
+  },
+  "devDependencies": {
+    "jest": "^29.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }
