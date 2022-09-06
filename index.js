@@ -37,17 +37,14 @@ function mdLinks (path, options = {validate: false, stats: false}){
     const links = getLinks(absolutePath); //  6. me devuelve un array con todos los links  encontrados 
     if (validate){ //si recibimos la propiedad validate como true dentro de options, tengo que validar la promesa, osea los href de los links
     const linksPromise = validateLinks(links) // para validar los links en caso sea true, llamo a la función validateLinks y le paso los links sin validar 
-    //console.log("devuelve", linksPromise)
+    //console.log("devuelve", linksPromise) // me devuelve una promesa pendiente
       linksPromise
         .then((result)=>{resolve(result)}) //resuelve un arreglo
         .catch(error => {reject(error)});
     }else{ // si no envío los links
       resolve(links);
     }
-  
   })
- 
-
   //const fileStats = fs.statSync(absolutePath);
   //console.log(fileStats);
   //else {
@@ -55,6 +52,7 @@ function mdLinks (path, options = {validate: false, stats: false}){
 } //fin mdLinks
 
 function validateLinks(links){  // recibimos los links que tienen las url sin validar
+  console.log("dentro de validateLins", links)
   const formatResult = []; // agrego los links de la respuesta a la consulta: status si existe y ok:ok / ok:fail
   const requests = Promise.all(links.map((link)=> { // promesa de promesa que espera se resuelva varias promesas.Las se van a generar al llamar a .map cuando recorro c/link y creo una promesa por c/u
      return  axios.get(link.href)
@@ -73,7 +71,6 @@ function validateLinks(links){  // recibimos los links que tienen las url sin va
     })
     })
 }
-
 
 function pathExits (path) {
   try{
@@ -123,7 +120,8 @@ module.exports = {
   pathExits,
   mdExtension,
   getLinks,
-  validateLinks
+  validateLinks,
+  mdLinks
 };
 
 

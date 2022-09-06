@@ -1,4 +1,4 @@
-const { pathExits, mdExtension, getLinks, validateLinks } = require('../index.js');
+const { pathExits, mdExtension, getLinks, validateLinks, mdLinks } = require('../index.js');
 const axios = require("axios");
 
 //jest.mock("axios")
@@ -78,7 +78,6 @@ describe("validateLinks", () =>{
     expect(typeof validateLinks).toBe("function");
   });
  
-  
   it('Debería retornar links válidos ', async () =>{
     // DADO
     let ruta = 'C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md';
@@ -99,13 +98,58 @@ describe("validateLinks", () =>{
       }
     ];
     axios.get.mockResolvedValue({status: 200})
-
     // CUANDO
     const result = await validateLinks(arrayOfLinks)
-
     // ENTONCES
   });
 
 });
 
+describe("mdLinks",() => {
+  it("Debería ser una función", () => {
+    expect(typeof mdLinks ).toBe("function");
+  });
 
+it("Debería retornar un array de objetos con la propiedad status y ok", async () => {
+  //DADO  
+ let ruta = 'C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md';
+ let options = {
+  validate:false,
+  stats:false
+}
+const linksPromesa = [
+  {
+    href: 'https://pburguer123.com',
+    text: 'Axios',
+    file: 'C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md',
+    status: undefined,
+    ok: 'fail'
+  },
+  {
+    href: 'https://breakdance.github.io/breakdance/',
+    text: 'Breakdance',
+    file: 'C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md',
+    status: 200,
+    ok: 'ok'
+  },
+  {
+    href: 'https://nodejs.org/',
+    text: 'Node.js',
+    file: 'C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md',
+    status: 200,
+    ok: 'ok'
+  }
+]
+axios.get.mockResolvedValue(linksPromesa)
+
+const result = await mdLinks(ruta, options)
+});
+})
+
+/*ejemplo
+  test('async test', async () => {
+    const asyncMock = jest.fn().mockResolvedValue(43);
+  
+    await asyncMock(); // 43
+  });
+  */
