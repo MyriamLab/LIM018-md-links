@@ -1,5 +1,7 @@
-const { pathExits, mdExtension, getLinks } = require('../index.js');
+const { pathExits, mdExtension, getLinks, validateLinks } = require('../index.js');
+const axios = require("axios");
 
+//jest.mock("axios")
 // función pathExists
 describe('pathExits', () => {    
   it("Debería ser una función", () => {
@@ -23,7 +25,7 @@ describe('pathExits', () => {
 }); 
 })
 
-
+// función mextension
 describe("mdExtension", () => {
   it("Debería ser una función", () => {
      // DADO - todo lo que necesitamos para ejecutar las funciones de nuestras pruebas, mokcs, variable, parametros para las funciones..
@@ -47,28 +49,63 @@ describe('getLinks', () => {
     expect(typeof getLinks).toBe("function");
   });
 
-  it('Al leer el archivo, debe retornar links', () => {
+  it('Retorna un array con un objeto con las propiedades href, text y file', () => {
     // DADO - todo lo que necesitamos para ejecutar las funciones de nuestras pruebas, mokcs, variable, parametros para las funciones..
     let ruta = 'C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md';
-    let links = '[Node.js]https://nodejs.org/api/fs.';
-   
-
-    // CUANDO - ejecutar una o varias funciones segun lo que estamos probando
-    const loQueRetornagetLinks = getLinks(ruta)
-    
-    // ENTONCES - evaluamos los resultados de la ejecucion del paso anterior. los expects()
-    expect(loQueRetornagetLinks).toBe(links);
-  });
-
-})
-
-
-/*
-describe('mdLinks', () => {
-
-  it('should...', () => {                                                                                             
-    console.log('FIX ME!');
+    const arrayOfLinks = [{
+      href: "https://nodejs.org/",
+      text: "Node.js",
+      file: ruta
+    },
+    {
+      href: "https://breakdance.github.io/breakdance/",
+      text: "Breakdance",
+      file: ruta
+    },
+    {
+      href: "https://pburguer123.com",
+      text: "Axios",
+      file: ruta
+    }
+  ];
+    expect(getLinks(ruta)).toStrictEqual(arrayOfLinks);
   });
 });
 
-*/
+// función validateLinks
+describe("validateLinks", () =>{
+  it("Debería ser una función", () => {
+    expect(typeof validateLinks).toBe("function");
+  });
+ 
+  
+  it('Debería retornar links válidos ', async () =>{
+    // DADO
+    let ruta = 'C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md';
+    const arrayOfLinks = [{
+        href: "https://nodejs.org/",
+        text: "Node.js",
+        file: ruta
+      },
+      {
+        href: "https://breakdance.github.io/breakdance/",
+        text: "Breakdance",
+        file: ruta
+      },
+      {
+        href: "https://pburguer123.com",
+        text: "Axios",
+        file: ruta
+      }
+    ];
+    axios.get.mockResolvedValue({status: 200})
+
+    // CUANDO
+    const result = await validateLinks(arrayOfLinks)
+
+    // ENTONCES
+  });
+
+});
+
+

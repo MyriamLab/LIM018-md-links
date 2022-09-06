@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-
 // Accedo al módulo node:path para trabajar con rutas de archivos y directorios  
+
 const fs = require("node:fs");
 const { isAbsolute, resolve, extname } = require('node:path');
 const axios = require("axios");
@@ -34,13 +34,14 @@ function mdLinks (path, options = {validate: false, stats: false}){
         reject(Error("El archivo indicado no tiene la extensión .md"));
       }
     }
-    const links = getLinks(absolutePath); //  6. leo el archivo
-    if (validate){
-    const linksPromise = validateLinks(links)
+    const links = getLinks(absolutePath); //  6. me devuelve un array con todos los links  encontrados 
+    if (validate){ //si recibimos la propiedad validate como true dentro de options, tengo que validar la promesa, osea los href de los links
+    const linksPromise = validateLinks(links) // para validar los links en caso sea true, llamo a la función validateLinks y le paso los links sin validar 
+    //console.log("devuelve", linksPromise)
       linksPromise
-        .then((result)=>{resolve(result)})
+        .then((result)=>{resolve(result)}) //resuelve un arreglo
         .catch(error => {reject(error)});
-    }else{
+    }else{ // si no envío los links
       resolve(links);
     }
   
@@ -53,10 +54,11 @@ function mdLinks (path, options = {validate: false, stats: false}){
   // console.log("no es absoluto")}
 } //fin mdLinks
 
-function validateLinks(links){
-  const formatResult = [];
-  const requests = Promise.all(links.map((link)=> {
-     return  axios.get(link.href).then(result =>{
+function validateLinks(links){  // recibimos los links que tienen las url sin validar
+  const formatResult = []; // agrego los links de la respuesta a la consulta: status si existe y ok:ok / ok:fail
+  const requests = Promise.all(links.map((link)=> { // promesa de promesa que espera se resuelva varias promesas.Las se van a generar al llamar a .map cuando recorro c/link y creo una promesa por c/u
+     return  axios.get(link.href)
+     .then(result =>{ // le agrego el sgte. objeto
       formatResult.push({...link, status:result.status, ok:"ok"})
     }).catch((error)=> {
       formatResult.push({...link, status:error.response?.status, ok:"fail"})
@@ -64,14 +66,13 @@ function validateLinks(links){
   })); 
     return new Promise((resolve, reject)=> {
       requests.then(()=>{
-        //console.log(formatResult)
+        console.log("Soy formatResult",formatResult)
         resolve(formatResult)
       }).catch((error)=> {
         reject(error)
     })
     })
 }
-
 
 
 function pathExits (path) {
@@ -103,14 +104,14 @@ function getLinks (path){
   const expHref = /\(.+\)/;
 
   const links = content.match(expLinks)
-  //console.log(links)
+ // console.log("soy links",links)
 
   const formatLinks = links.map((link)=>({
     href: link.match(expHref)[0].slice(1, -1),
     text: link.match(expText)[0].slice(1, -1),
     file: path,
   }))
- //console.log(formatLinks);
+ console.log("soy formatLinks", formatLinks);
  return formatLinks;
 }
 
@@ -121,13 +122,16 @@ function main () {
 module.exports = {
   pathExits,
   mdExtension,
-  getLinks
+  getLinks,
+  validateLinks
 };
 
 
 mdLinks("C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md", {validate:true}).then(result =>{
   console.log(result)
 });
+
+
 //mdLinks("C:/LABORATORIA/2. PROYECTOS/NIVEL 4/MD-LIKN-FLUJO.mdj");
 //mdLinks("./some/example.md") // ruta relativa 
 //mdLinks('C:/foo/..') 
