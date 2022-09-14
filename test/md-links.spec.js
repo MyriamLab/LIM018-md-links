@@ -1,7 +1,7 @@
 const { pathExits, mdExtension, getLinks, validateLinks, mdLinks } = require('../index.js');
 const axios = require("axios");
-
 //jest.mock("axios")
+
 // función pathExists
 describe('pathExits', () => {    
   it("Debería ser una función", () => {
@@ -105,6 +105,7 @@ describe("validateLinks", () =>{
 
 });
 
+// función mdLinks
 describe("mdLinks",() => {
   it("Debería ser una función", () => {
     expect(typeof mdLinks ).toBe("function");

@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 // Accedo al módulo node:path para trabajar con rutas de archivos y directorios  
-
 const fs = require("node:fs");
 const { isAbsolute, resolve, extname } = require('node:path');
 const axios = require("axios");
 const { request } = require("node:https");
+//const chalk = require('chalk');
+
+
+
 //path es la ubicación del archivo 
 
 //options es un objeto con las propiedades: validate y stats
@@ -14,9 +17,9 @@ function mdLinks (path, options = {validate: false, stats: false}){
     let absolutePath = path; // 1.guardo la propiedad path en la variable absolutePath 
     if (!isAbsolute(path)){ //  2.si path no es absoluta, lo convierto en absoluta
       absolutePath = resolve(path) // llamo a la función resolve(path) es el path que convierto de relativo a absoluto
-      console.log("es abosluto")
+      //console.log("es abosluto")
     }
-    console.log(absolutePath) //  me devuelve en consola la ruta absoluta desde el C
+    //console.log(absolutePath) //  me devuelve en consola la ruta absoluta desde el C
   
   
     if (!pathExits(absolutePath)){  //  3.verificar si el path absoluto existe
@@ -29,7 +32,7 @@ function mdLinks (path, options = {validate: false, stats: false}){
     if (stat.isDirectory()){  //  4.verifico si path es archivo o directorio.
       console.log("Es un directorio") 
     }else{  
-      console.log("Es un archivo")
+      //console.log("Es un archivo")
       if(!mdExtension(absolutePath)){ // 5. si es archivo verifico si no es extensión .md
         reject(Error("El archivo indicado no tiene la extensión .md"));
       }
@@ -51,8 +54,10 @@ function mdLinks (path, options = {validate: false, stats: false}){
   // console.log("no es absoluto")}
 } //fin mdLinks
 
+
+//FUNCIONES
 function validateLinks(links){  // recibimos los links que tienen las url sin validar
-  console.log("dentro de validateLins", links)
+ // console.log("dentro de validateLins", links)
   const formatResult = []; // agrego los links de la respuesta a la consulta: status si existe y ok:ok / ok:fail
   const requests = Promise.all(links.map((link)=> { // promesa de promesa que espera se resuelva varias promesas.Las se van a generar al llamar a .map cuando recorro c/link y creo una promesa por c/u
      return  axios.get(link.href)
@@ -64,7 +69,7 @@ function validateLinks(links){  // recibimos los links que tienen las url sin va
   })); 
     return new Promise((resolve, reject)=> {
       requests.then(()=>{
-        console.log("Soy formatResult",formatResult)
+       console.log("Soy formatResult",formatResult)
         resolve(formatResult)
       }).catch((error)=> {
         reject(error)
@@ -84,7 +89,7 @@ function pathExits (path) {
   //console.log(extName)
 function mdExtension (path){
   const extName = extname(path); // path.extname() obtengo la extensión de la ruta del archivo
-  console.log(extName)
+  //console.log(extName)
   
   if(extName == ".md"){
     return true;
@@ -108,7 +113,7 @@ function getLinks (path){
     text: link.match(expText)[0].slice(1, -1),
     file: path,
   }))
- console.log("soy formatLinks", formatLinks);
+ console.log(formatLinks); //"soy formatLinks", 
  return formatLinks;
 }
 
@@ -121,13 +126,14 @@ module.exports = {
   mdExtension,
   getLinks,
   validateLinks,
-  mdLinks
+  mdLinks,
+  
 };
 
-
+/*
 mdLinks("C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md", {validate:true}).then(result =>{
   console.log(result)
-});
+});*/
 
 
 //mdLinks("C:/LABORATORIA/2. PROYECTOS/NIVEL 4/MD-LIKN-FLUJO.mdj");
