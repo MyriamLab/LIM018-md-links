@@ -15,5 +15,9 @@
   "dependencies": {
     "axios": "^0.27.2",
     "chalk": "^4.1.2"
+  },
+
+  "bin": {
+    "mdLinks": "./cli.js"
   }
 }

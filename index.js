@@ -87,7 +87,7 @@ function getLinks (path){
     text: link.match(expText)[0].slice(1, -1),
     file: path,
   }))
- console.log(formatLinks); //"soy formatLinks", 
+ //console.log(formatLinks); //"soy formatLinks", 
  return formatLinks;
 }
 
@@ -104,7 +104,7 @@ function validateLinks(links){  // recibimos los links que tienen las url sin va
    })); 
      return new Promise((resolve, reject)=> {
        requests.then(()=>{
-        console.log("Soy formatResult",formatResult)
+       // console.log("Soy formatResult",formatResult)
          resolve(formatResult)
        }).catch((error)=> {
          reject(error)
