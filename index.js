@@ -1,14 +1,8 @@
 #!/usr/bin/env node
-// Accedo al módulo node:path para trabajar con rutas de archivos y directorios  
 const fs = require("node:fs");
 const { isAbsolute, resolve, extname } = require('node:path');
 const axios = require("axios");
 const { request } = require("node:https");
-//const chalk = require('chalk');
-
-
-
-//path es la ubicación del archivo 
 
 //options es un objeto con las propiedades: validate y stats
 function mdLinks (path, options = {validate: false, stats: false}){
@@ -56,30 +50,10 @@ function mdLinks (path, options = {validate: false, stats: false}){
 
 
 //FUNCIONES
-function validateLinks(links){  // recibimos los links que tienen las url sin validar
- // console.log("dentro de validateLins", links)
-  const formatResult = []; // agrego los links de la respuesta a la consulta: status si existe y ok:ok / ok:fail
-  const requests = Promise.all(links.map((link)=> { // promesa de promesa que espera se resuelva varias promesas.Las se van a generar al llamar a .map cuando recorro c/link y creo una promesa por c/u
-     return  axios.get(link.href)
-     .then(result =>{ // le agrego el sgte. objeto
-      formatResult.push({...link, status:result.status, ok:"ok"})
-    }).catch((error)=> {
-      formatResult.push({...link, status:error.response?.status, ok:"fail"})
-    })
-  })); 
-    return new Promise((resolve, reject)=> {
-      requests.then(()=>{
-       console.log("Soy formatResult",formatResult)
-        resolve(formatResult)
-      }).catch((error)=> {
-        reject(error)
-    })
-    })
-}
 
 function pathExits (path) {
   try{
-    fs.statSync(path);
+    fs.statSync(path); // path is file: true // path is directory: false
     return true;
   }catch(error){
     return false;
@@ -117,6 +91,26 @@ function getLinks (path){
  return formatLinks;
 }
 
+function validateLinks(links){  // recibimos los links que tienen las url sin validar
+  // console.log("dentro de validateLins", links)
+   const formatResult = []; // agrego los links de la respuesta a la consulta: status si existe y ok:ok / ok:fail
+   const requests = Promise.all(links.map((link)=> { // promesa de promesa que espera se resuelva varias promesas.Las se van a generar al llamar a .map cuando recorro c/link y creo una promesa por c/u
+      return  axios.get(link.href)
+      .then(result =>{ // le agrego el sgte. objeto
+       formatResult.push({...link, status:result.status, ok:"ok"})
+     }).catch((error)=> {
+       formatResult.push({...link, status:error.response?.status, ok:"fail"})
+     })
+   })); 
+     return new Promise((resolve, reject)=> {
+       requests.then(()=>{
+        console.log("Soy formatResult",formatResult)
+         resolve(formatResult)
+       }).catch((error)=> {
+         reject(error)
+     })
+     })
+ }
 function main () {
     console.log(path)
 }
@@ -133,7 +127,8 @@ module.exports = {
 /*
 mdLinks("C:/LABORATORIA/2. PROYECTOS/NIVEL 4/prueba.md", {validate:true}).then(result =>{
   console.log(result)
-});*/
+});
+*/
 
 
 //mdLinks("C:/LABORATORIA/2. PROYECTOS/NIVEL 4/MD-LIKN-FLUJO.mdj");
