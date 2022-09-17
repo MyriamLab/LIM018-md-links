@@ -22,43 +22,49 @@ Los diagramas de flujo son los siguientes:
 
 Para utilizar la librería MD-LINKS debe ejecutar los siguientes comandos en la terminal:
 
-- [ ] **mdLinks <path.md> <--option>**
+#### ***mdLinks <path.md> <--option>***
 
-### *<path.md>*
+
+- [ ] **<path.md>**
 
 Es la ruta del archivo con extensión .md.
 La librería lee este archivo e imprime los links encontrados con la siguiente información:
 
-- [ ] **file:**
-- [ ] **href:**
-- [ ] **text:**
+* **file:**
+* **href:**
+* **text:**
 
-### *<--option>* 
+
+- [ ]  **<--option>**
+
 Para esta opción de comando hay 3 posibilidades:
 
- ###### --validate
+ ***--validate***
+ 
 Si ingresa como segundo argumento la opción --validate, el módulo hará una petición HTTP para averiguar si el link funciona o no. Si el link resulta en una redirección a una URL que responde ok, entonces se considera el link como ok.
 
 El output en este caso incluirá la palabra ok o fail después de la URL, así como el status de la respuesta recibida a la petición HTTP a dicha URL.
 
-- [ ] **file:**
-- [ ] **href:**
-- [ ] **text:**
-- [ ] **status:**
-- [ ] **ok:**
+* **file:**
+* **href:**
+* **text:**
+* **status:**
+* **ok:**
 
-###### --stats
+***--stats***
+
 Si ingresa como argumento la opción --stats el output (salida) será un texto con estadísticas básicas sobre los links.
 
-- [ ] **Número total de links**
-- [ ] **Número de links únicos**
+* **Número total de links**
+* **Número de links únicos**
 
-###### --stats y --validate 
-Si ingresa esta combinación o viceversa obtiene estadísticas que necesiten de los resultados de la validación.
 
-- [ ] **Número total de links**
-- [ ] **Número de links únicos**
-- [ ] **Número de links rotos**
+***--stats y --validate***
+
+Si ingresa esta combinación o ***viceversa*** obtiene estadísticas que necesiten de los resultados de la validación.
+* **Número total de links**
+* **Número de links únicos**
+* **Número de links rotos**
 
 
 
