@@ -1,4 +1,4 @@
-# Markdown Links
+# Librería mdLinks
 
 ## 1. Descripción 
 
@@ -8,9 +8,9 @@ Es una biblioteca que permite validar las URL dentro de archivos con extensión 
 
 Los diagramas de flujo son los siguientes: 
 
-### API mdLinks:
+#### API mdLinks:
 
-### CLI mdLinks
+#### CLI mdLinks
 
 ## 3. Instrucciones oara la instalación
 
@@ -18,9 +18,9 @@ Los diagramas de flujo son los siguientes:
 
 Para realizar la instalación de la librería ingrese a través de la terminal lo siguiente:
 
---------------------------------
+
   mdLinks <path.md> --option
---------------------------------
+
 
 
 ## Índice
