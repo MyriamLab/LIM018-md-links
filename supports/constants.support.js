@@ -1,34 +1,40 @@
 const help = `
-─ (｡✿‿✿｡) ────────────────────────────────────────────────────────────
-              INGGRESE ALGUNA DE LAS SIGUIENTES OPCIONES: 
+───────────────────────────────────────────────────────────────────────────────────────────────────────
+              
+                (｡✿‿✿｡)  ¡Bienvenido a la librería mdLinks! 
+    
+    A continuación se muestras todas la opciones válidas para obtener la información deseada:  
                      
-    Opción 1: path: 
-    ---------------
-    Es la ruta absoluta o relativa al archivo que retorna los links encontrados con el siguiente detalle : 
+     1. Para obtener los links encontrados en el archivo markdow, ingrese una ruta absoluta o relativa.
+     
+     Ejemplo: mdLinks <path.md> la cual retornará:
 
         href: URL encontrada.
-        text: Texto que aparecía dentro del link (<a>).
-        file: Ruta del archivo donde se encontró el link.
+        text: Texto que aparece dentro del link (<a>).
+        file: Ruta del archivo donde se encontra el link.
 
-    Oopción 2. --validate: 
-    ----------------------
-    Para veriguar si los links encontrados funcionan o no.
 
-    Oopción 3. --stats: 
-    -------------------
-    Retorna estadísticas básicas sobre los links:
+    2. Para conocer el status de los links si funcionn o no. Ingrese el path seguido de la opción --validate.
 
+    Ejemplo: mdLinks <path.md> --validate
+
+  
+    3. Para conocer las estadísticas de los links, ingrese la opción --stats.
+
+    Ejemplo: mdLinks <path.md> --validate
+   
         Total: Número total de links encontrados.
         Unique: Número de links únicos.
 
-    Oopción 4: --validate --stats: 
-    ------------------------------
-    Retorna estadísticas que necesitan de los resultados de la validación:
-               
+    4: También puede combinar las opciones y retornar estadísticas que necesitan de los resultados de la validación--validate --stats: 
+             
+    Ejemplo: mdLinks <path.md> --validate --stats  ó  mdLinks <path.md> --stats --validate
+
        Total: Número total de links encontrados.
        Unique: Número de links únicos.
        Broken: Número de links rotos.
-o__________________________________________________________________ (｡✿‿✿｡)o
+       
+o____________________________________________________________________________ (｡✿‿✿｡)o
 `;
 
 const pathError = 'Ingrese una ruta válida de archivo markdown .md o escriba --help';
