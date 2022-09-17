@@ -10,7 +10,11 @@ Los diagramas de flujo son los siguientes:
 
 #### API mdLinks:
 
+![Diagrama Api](./imagenes/CLI%20MD-LINKS.jpeg)
+
 #### CLI mdLinks
+
+![Diagrama Cli](./imagenes/CLI%20MD-LINKS.jpeg)
 
 ## 3. Instrucciones oara la instalación
 
