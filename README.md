@@ -10,20 +10,17 @@ Los diagramas de flujo son los siguientes:
 
 #### API mdLinks:
 
-![Diagrama Api](./imagenes/CLI%20MD-LINKS.jpeg)
+![Diagrama Api](./imagenes/MD-LINKS%20%20(1).jpeg)
 
 #### CLI mdLinks
 
 ![Diagrama Cli](./imagenes/CLI%20MD-LINKS.jpeg)
 
-## 3. Instrucciones oara la instalación
+## 3. Pasos a seguir para la instalación:
+
+Para realizar la instalación de la librería 
 
 ## 4. Documentación:
-
-Para realizar la instalación de la librería ingrese a través de la terminal lo siguiente:
-
-
-  mdLinks <path.md> --option
 
 
 
