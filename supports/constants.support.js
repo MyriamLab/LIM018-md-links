@@ -3,9 +3,9 @@ const help = `
               
                 (｡✿‿✿｡)  ¡Bienvenido a la librería mdLinks! 
     
-    A continuación se muestras todas la opciones válidas para obtener la información deseada:  
+     A continuación se muestras todas la opciones válidas para obtener la información deseada:  
                      
-     1. Para obtener los links encontrados en el archivo markdow, ingrese una ruta absoluta o relativa.
+     OPCIÓN 1. Para obtener los links encontrados en el archivo markdow, ingrese una ruta absoluta o relativa.
      
      Ejemplo: mdLinks <path.md> la cual retornará:
 
@@ -14,19 +14,20 @@ const help = `
         file: Ruta del archivo donde se encontra el link.
 
 
-    2. Para conocer el status de los links si funcionn o no. Ingrese el path seguido de la opción --validate.
+    OPCIÓN 2. Para conocer el status de los links si funcionn o no. Ingrese el path seguido de la opción --validate.
 
     Ejemplo: mdLinks <path.md> --validate
 
   
-    3. Para conocer las estadísticas de los links, ingrese la opción --stats.
+    OPCIÓN 3. Para conocer las estadísticas de los links, ingrese la opción --stats.
 
     Ejemplo: mdLinks <path.md> --validate
    
         Total: Número total de links encontrados.
         Unique: Número de links únicos.
 
-    4: También puede combinar las opciones y retornar estadísticas que necesitan de los resultados de la validación--validate --stats: 
+    OPCIÓN 4. También puede combinar las opciones y retornar estadísticas que 
+    necesitan de los resultados de la   validación--validate --stats: 
              
     Ejemplo: mdLinks <path.md> --validate --stats  ó  mdLinks <path.md> --stats --validate
 
