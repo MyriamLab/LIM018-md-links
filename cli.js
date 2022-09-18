@@ -2,7 +2,7 @@
 const chalk = require('chalk');
 
 const { hasArgv, hasPath, getOptions, getPath } = require('./supports/cli.support');
-const { help, pathError, resultMessage, resultValidateMessage } = require('./supports/constants.support');
+const { help, pathError, resultMessage, resultValidateMessage, resultStadsMessage } = require('./supports/constants.support');
 const { mdLinks } = require('./index');
 
 if (hasArgv('--help')) {
@@ -24,6 +24,7 @@ mdLinks(path, options)
       const total = result.length;
       const unique = new Set(result.map((el) => el.href)).size;
 
+      console.log(chalk.magenta(resultStadsMessage))
       console.log(`Total: ${total}`);
       console.log(`Unique: ${unique}`);
 

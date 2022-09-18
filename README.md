@@ -34,6 +34,13 @@ La librería lee este archivo e imprime los links encontrados con la siguiente i
 * **href:**
 * **text:**
 
+Si no ingresa un path válido, le devuelve un mensaje de error.
+
+![error](./imagenes/error.png)
+
+Si necesita ayuda ingrese ***mdLinks --help***
+
+![help](./imagenes/help.png)
 
 - [ ]  **<--option>**
 
@@ -51,6 +58,8 @@ El output en este caso incluirá la palabra ok o fail después de la URL, así c
 * **status:**
 * **ok:**
 
+![validate](./imagenes/validate.png)
+
 ***--stats***
 
 Si ingresa como argumento la opción --stats el output (salida) será un texto con estadísticas básicas sobre los links.
@@ -58,6 +67,7 @@ Si ingresa como argumento la opción --stats el output (salida) será un texto c
 * **Número total de links**
 * **Número de links únicos**
 
+![stats](./imagenes/stats.png)
 
 ***--stats y --validate***
 
@@ -66,8 +76,7 @@ Si ingresa esta combinación o ***viceversa*** obtiene estadísticas que necesit
 * **Número de links únicos**
 * **Número de links rotos**
 
-
-
+![statsValidate](./imagenes/statsValidate.png)
 
 
 

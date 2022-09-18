@@ -3,7 +3,7 @@ const help = `
               
                 (｡✿‿✿｡)  ¡Bienvenido a la librería mdLinks! 
     
-     A continuación se muestras todas la opciones válidas para obtener la información deseada:  
+     A continuación se muestran todas la opciones válidas para obtener la información deseada:  
                      
      OPCIÓN 1. Para obtener los links encontrados en el archivo markdow, ingrese una ruta absoluta o relativa.
      
@@ -14,7 +14,7 @@ const help = `
         file: Ruta del archivo donde se encontra el link.
 
 
-    OPCIÓN 2. Para conocer el status de los links si funcionn o no. Ingrese el path seguido de la opción --validate.
+    OPCIÓN 2. Para conocer el status de los links si funcionn o no, ingrese el path seguido de la opción --validate.
 
     Ejemplo: mdLinks <path.md> --validate
 
@@ -41,15 +41,20 @@ o____________________________________________________________________________ (�
 const pathError = 'Ingrese una ruta válida de archivo markdown .md o escriba --help';
 
 const resultMessage = `
-─ (｡✿‿✿｡) ────────────────────────────────────────────────────────
-                    LOS LINKS ENCONTRADOS SON:
-o────────────────────────────────────────────────────────── (｡✿‿✿｡)o
+o(｡✿‿✿｡) ---------------------------------------------------------- o
+                       LOS LINKS ENCONTRADOS SON:
+o ------------------------------------------------------------ (｡✿‿✿｡)o
 `;
 
 const resultValidateMessage = `
-─ (｡✿‿✿｡) ────────────────────────────────────────────────────────
-                    LOS LINKS VALIDADOS SON:
-o────────────────────────────────────────────────────────── (｡✿‿✿｡)o
+o(｡✿‿✿｡) ---------------------------------------------------------- o
+                        LOS LINKS VALIDADOS SON:
+o ------------------------------------------------------------ (｡✿‿✿｡)o
 `;
 
-module.exports = { help, pathError, resultMessage, resultValidateMessage }
+const resultStadsMessage = `
+o(｡✿‿✿｡) ---------------------------------------------------------- o
+                   LAS ESTADÍSTICAS DE LOS LINKS SON:
+o ------------------------------------------------------------ (｡✿‿✿｡)o
+`;
+module.exports = { help, pathError, resultMessage, resultValidateMessage, resultStadsMessage }
