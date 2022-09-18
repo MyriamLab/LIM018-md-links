@@ -52,9 +52,9 @@ Si ingresa como segundo argumento la opción --validate, el módulo hará una pe
 
 El output en este caso incluirá la palabra ok o fail después de la URL, así como el status de la respuesta recibida a la petición HTTP a dicha URL.
 
-* **file:**
 * **href:**
 * **text:**
+* **file:**
 * **status:**
 * **ok:**
 
